@@ -118,11 +118,15 @@ class Program
 
     static bool ValidateRookMove(int fromRow, int fromCol, int toRow, int toCol)
     {
+        return (fromRow == toRow || fromCol == toCol) && IsPathClear(fromRow, fromCol, toRow, toCol);
+    }
+
+    static bool ValidateKnightMove(int fromRow, int fromCol, int toRow, int toCol)
+    {
         int rowDiff = Math.Abs(fromRow - toRow);
         int colDiff = Math.Abs(fromCol - toCol);
         return (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
 
     }
-
 
 }
