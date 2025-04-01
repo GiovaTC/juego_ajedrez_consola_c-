@@ -126,7 +126,34 @@ class Program
         int rowDiff = Math.Abs(fromRow - toRow);
         int colDiff = Math.Abs(fromCol - toCol);
         return (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
-
     }
 
+    static bool ValidateBishopMove(int fromRow, int fromCol, int toRow, int toCol)
+    {
+        return Math.Abs(fromRow - toRow) == Math.Abs(fromCol - toCol) && IsPathClear(fromRow, fromCol, toRow, toCol);
+    }
+
+    static bool ValidateQueenMove(int fromRow, int fromCol, int toRow, int toCol)
+    {
+        return ValidateRookMove(fromRow, fromCol, toRow, toCol) || ValidateBishopMove(fromRow, fromCol, toRow, toCol);
+    }
+
+    static bool ValidateKingMove(int fromRow, int fromCol, int toRow, int toCol)
+    {
+        return Math.Abs(fromRow - toRow) <= 1 && Math.Abs(fromCol - toCol) <= 1;
+    }
+
+    static bool IsPathClear(int fromRow, int fromCol, int toRow, int toCol)
+    {
+        int rowStep = Math.Sign(toRow - fromRow);
+        int colStep = Math.Sign(toCol - fromCol);
+        int r = fromRow + rowStep, c = fromCol + colStep;
+        while (r != toRow || c != toCol)
+        {
+            if (board[r, c] != '.') return false;
+            r += rowStep;
+            c += colStep;
+        }
+        return true;
+    }
 }
