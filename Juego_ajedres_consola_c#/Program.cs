@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Net.Http.Headers;
 
 class Program
 {
     static char[,] board = new char[8, 8]
     {
-        { 'R','N', 'B', 'Q', 'K', 'B', 'N', 'R' },
-        { 'P','P', 'P', 'P', 'P', 'P', 'P', 'P' },
-        { '.','.', '.', '.', '.', '.', '.', '.' },
-        { '.','.', '.', '.', '.', '.', '.', '.' },
-        { '.','.', '.', '.', '.', '.', '.', '.' },
-        { '.','.', '.', '.', '.', '.', '.', '.' },
-        { 'p','p', 'p', 'p', 'p', 'p', 'p', 'p' },
-        { 'r','n', 'b', 'q', 'k', 'b', 'n', 'r' }
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' },
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { '.', '.', '.', '.', '.', '.', '.', '.' },
+        { '.', '.', '.', '.', '.', '.', '.', '.' },
+        { '.', '.', '.', '.', '.', '.', '.', '.' },
+        { '.', '.', '.', '.', '.', '.', '.', '.' },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' }
     };
 
     static void Main()
@@ -21,9 +20,9 @@ class Program
         {
             Console.Clear();
             PrintBoard();
-            Console.Write("Ingrese la posicion de origen (ej. e2): ");
+            Console.Write("Ingrese la posición de origen (ej. e2): ");
             string from = Console.ReadLine();
-            Console.Write("Ingrese la posicion de origen (ej. e4): ");
+            Console.Write("Ingrese la posición de destino (ej. e4): ");
             string to = Console.ReadLine();
 
             if (MovePiece(from, to))
@@ -32,19 +31,19 @@ class Program
             }
             else
             {
-                Console.WriteLine("Movimiento invalido");
+                Console.WriteLine("Movimiento inválido.");
             }
             Console.ReadLine();
         }
     }
-    
+
     static void PrintBoard()
     {
-        Console.WriteLine(" a b c d e f g h");
-        for(int i = 0; i < 8; i++)
+        Console.WriteLine("  a b c d e f g h");
+        for (int i = 0; i < 8; i++)
         {
             Console.Write(8 - i + " ");
-            for(int j = 0; j < 8; j++)
+            for (int j = 0; j < 8; j++)
             {
                 Console.Write(board[i, j] + " ");
             }
@@ -70,8 +69,8 @@ class Program
 
     static bool IsValidMove(int fromRow, int fromCol, int toRow, int toCol)
     {
-        if(fromRow < 0 || fromRow >= 8 || fromCol < 0 || fromCol >= 8 || 
-           toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8 )
+        if (fromRow < 0 || fromRow >= 8 || fromCol < 0 || fromCol >= 8 ||
+            toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8)
         {
             return false;
         }
